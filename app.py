@@ -10,14 +10,11 @@ from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precisio
 from sklearn.metrics import precision_score, recall_score 
 
 def main():
+    st.title(' Machine Learning Web Application')
     
-
-
 
 
 
 
 if __name__ == '__main__':
     main()
-
-
