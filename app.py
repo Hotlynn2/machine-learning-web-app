@@ -14,7 +14,17 @@ def main():
     st.sidebar.title('Machine Learning Web Application')
     st.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
     st.sidebar.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
-    
+
+    st.cache(persist=True)
+    def load_df():
+        data = pd.read_csv('mushrooms.csv')
+        label = LabelEncoder()
+        for col in data.columns:
+            data[col] = label.fit_transform(data[col])
+        return data
+
+    df = load_df()
+    df
 
 
 
