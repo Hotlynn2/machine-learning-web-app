@@ -13,6 +13,7 @@ def main():
     st.title('Machine Learning Web Application')
     st.sidebar.title('Machine Learning Web Application')
     st.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
+    st.sidebar.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
     
 
 
