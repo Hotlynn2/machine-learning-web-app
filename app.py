@@ -15,7 +15,7 @@ def main():
     st.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
     st.sidebar.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
 
-    st.cache(persist=True)
+    @st.cache(persist=True)
     def load_df():
         data = pd.read_csv('mushrooms.csv')
         label = LabelEncoder()
@@ -23,8 +23,19 @@ def main():
             data[col] = label.fit_transform(data[col])
         return data
 
+    @st.cache(persist = True)
+    def split_df():
+        X = data.drop('type', axis = 1)
+        y = data.type
+        X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_seed = 120)
+        return X_train, y_train, X_test, y_test
+
+
     df = load_df()
-    df
+    
+    if st.sidebar.checkbox('show raw dataset', False):
+        st.subheader('Mushroom Data Set (Classification)')
+        st.write(df)
 
 
 
