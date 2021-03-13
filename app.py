@@ -24,14 +24,14 @@ def main():
         return data
 
     @st.cache(persist = True)
-    def split_df():
+    def split(dataframe):
         X = data.drop('type', axis = 1)
         y = data.type
         X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_seed = 120)
         return X_train, y_train, X_test, y_test
 
-
     df = load_df()
+    X_train, y_train, X_test, y_test = split(df) 
     
     if st.sidebar.checkbox('show raw dataset', False):
         st.subheader('Mushroom Data Set (Classification)')
