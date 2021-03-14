@@ -12,8 +12,8 @@ from sklearn.metrics import precision_score, recall_score
 def main():
     st.title('Machine Learning Web Application')
     st.sidebar.title('Machine Learning Web Application')
-    st.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
-    st.sidebar.markdown('This is a no-dcode Machine learning interface. Enjoy🥂')
+    st.markdown('This is a low-code Machine learning interface. Enjoy🥂')
+    st.sidebar.markdown('This is a low-code Machine learning interface. Enjoy🥂')
 
     @st.cache(persist=True)
     def load_df():
@@ -27,7 +27,7 @@ def main():
     def split(dataframe):
         X = dataframe.drop('type', axis = 1)
         y = dataframe.type
-        X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_state = 120)
+        X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_state = 22)
         return X_train, y_train, X_test, y_test
 
     def plot_metrics(metrics_list):
@@ -61,12 +61,7 @@ def main():
         st.subheader('Mushroom Data Set (Classification)')
         st.write(df)
 
-    # if st.sidebar.select_slider('Confusion Matrix', False):
-    #     st.subheader('Confusion Matrix Plot')
-    #     st.write(metrics)
-
-
-
+ 
 
 if __name__ == '__main__':
     main()
