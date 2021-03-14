@@ -25,9 +25,9 @@ def main():
 
     @st.cache(persist = True)
     def split(dataframe):
-        X = data.drop('type', axis = 1)
-        y = data.type
-        X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_seed = 120)
+        X = dataframe.drop('type', axis = 1)
+        y = dataframe.type
+        X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_state = 120)
         return X_train, y_train, X_test, y_test
 
     df = load_df()
