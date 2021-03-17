@@ -50,8 +50,6 @@ def main():
     df = load_df()
     X_train, y_train, X_test, y_test = split(df) 
     class_names = ['edible', 'poisonous']
-    metrics_list = ['Confusion Matrix', 'ROC Curve', 'Precision-Recall Curve']
-    plot_metrics = plot_metrics(metrics_list)
     
 
 
@@ -64,10 +62,7 @@ def main():
         st.subheader('Mushroom Data Set (Classification)')
         st.write(df)
     
-    if st.sidebar.select_slider('Confusion Matrix', 'ROC Curve', 'Precision-Recall Curve', False ):
-        st.subheader('Plot Metrics')
-        st.write(plot_metrics)
-        
+
 
  
 
