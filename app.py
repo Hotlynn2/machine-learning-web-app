@@ -61,10 +61,20 @@ def main():
 
         metrics = st.sidebar.multiselect('What metric should be used', ("Logistic Regression", "Random Forest", "Support Vector Machine (SVM)")))
 
-        if st.sidebar.button('Classify', key = 'Classify')
-        st.subheader('Support Vector Machine (SVM) Results')
-        model = SVC(c = C, gamma = gamma, kernel = kernel)
-        model.fit(X_train, y_train)
+        if st.sidebar.button('Classify', key = 'classify'):
+            st.subheader('Support Vector Machine (SVM) Results')
+            model = SVC(C = C, gamma = gamma, kernel = kernel)
+            model.fit(X_train, y_train)
+            model.predict(X_test)
+            st.write('Accuracy :', model.score(X_test, y_test).round(2))
+            st.write('Precision :', precision_score(X_test, y_test, labels = class_names).round(2)
+            st.write('Recall :', recall_score(X_test, y_test, labels = class_names).round(2)
+            plot_metrics(metrics)
+
+
+
+
+
 
 
     
