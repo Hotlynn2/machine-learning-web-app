@@ -59,7 +59,7 @@ def main():
         kernel = st.sidebar.radio("Kernel", ("rbf","linear"), key = 'kernel')
         gamma = st.sidebar.radio("Gamma Kernel Coefficient", ("scale", "auto"), key = 'gamma' )
 
-        metrics = st.sidebar.multiselect('What metric should be used', ("Logistic Regression", "Random Forest", "Support Vector Machine (SVM)")))
+        metrics = st.sidebar.multiselect('What metric should be used', ("Logistic Regression", "Random Forest", "Support Vector Machine (SVM)"))
 
         if st.sidebar.button('Classify', key = 'classify'):
             st.subheader('Support Vector Machine (SVM) Results')
