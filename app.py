@@ -27,7 +27,7 @@ def main():
     def split(dataframe):
         X = dataframe.drop('type', axis = 1)
         y = dataframe.type
-        X_train, y_train, X_test, y_test = train_test_split(X, y, test_size = 0.25, random_state = 22)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 22)
         return X_train, y_train, X_test, y_test
 
     def plot_metrics(metrics_list):
@@ -67,8 +67,8 @@ def main():
             model.fit(X_train, y_train)
             model.predict(X_test)
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
-            st.write('Precision :', precision_score(X_test, y_test, labels = class_names).round(2)
-            st.write('Recall :', recall_score(X_test, y_test, labels = class_names).round(2)
+            st.write('Precision :', precision_score(X_test, y_test, labels = class_names)).round(2)
+            st.write('Recall :', recall_score(X_test, y_test, labels = class_names)).round(2)
             plot_metrics(metrics)
 
 
