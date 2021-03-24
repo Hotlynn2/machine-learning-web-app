@@ -67,8 +67,8 @@ def main():
             model.fit(X_train, y_train)
             model.predict(X_test)
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
-            st.write('Precision :', precision_score(y_test, y_pred, labels = class_names)).round(2)
-            st.write('Recall :', recall_score(y_test, y_pred, labels = class_names)).round(2)
+            st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
+            st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
             plot_metrics(metrics)
 
 
