@@ -38,12 +38,12 @@ def main():
 
         if 'ROC Curve' in metrics_list:
             st.subheader('ROC Curve')
-            plot_confusion_matrix(model, X_test, y_test)
+            plot_roc_curve(model, X_test, y_test)
             st.pyplot()
 
         if 'Precision-Recall Curve' in metrics_list:
             st.subheader('Precision-Recall Curve')
-            plot_confusion_matrix(model, X_test, y_test)
+            plot_precision_recall_curve(model, X_test, y_test)
             st.pyplot()
         
 
