@@ -33,7 +33,7 @@ def main():
     def plot_metrics(metrics_list):
         if 'Confusion Matrix' in metrics_list:
             st.subheader('Confusion Matrix')
-            plot_confusion_matrix(model, X_test, y_test, displat_labels = class_names)
+            plot_confusion_matrix(model, X_test, y_test, display_labels = class_names)
             st.pyplot()
 
         if 'ROC Curve' in metrics_list:
@@ -59,23 +59,18 @@ def main():
         kernel = st.sidebar.radio("Kernel", ("rbf","linear"), key = 'kernel')
         gamma = st.sidebar.radio("Gamma Kernel Coefficient", ("scale", "auto"), key = 'gamma' )
 
-        metrics = st.sidebar.multiselect('What metric should be used', ("Logistic Regression", "Random Forest", "Support Vector Machine (SVM)"))
+        metrics = st.sidebar.multiselect('What metric should be used', ('Confusion Matrix', 'ROC Curve', 'Precision-Recall Curve'))
 
         if st.sidebar.button('Classify', key = 'classify'):
             st.subheader('Support Vector Machine (SVM) Results')
             model = SVC(C = C, gamma = gamma, kernel = kernel)
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
-
-        model.fit(X_train, y_train)
-            y_pred = model.predict(X_test)
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
             st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
             st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
             plot_metrics(metrics)
-        st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
-            st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
-            plot_metrics(metrics)
+        
 
 
 
