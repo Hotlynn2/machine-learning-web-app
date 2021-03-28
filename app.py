@@ -70,6 +70,24 @@ def main():
             st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
             st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
             plot_metrics(metrics)
+
+    if classifier == 'Logistic Regression':
+        st.sidebar.subheader('Model Hyperparameters')
+        C = st.sidebar.number_input("C (Regularization parameter)", 0.01, 10.0, step = 0.01, key = 'C')
+        max_iter = st.sidebar.slider("Maximum iterations", 100, 1000, key = 'max_iter')
+
+        metrics = st.sidebar.multiselect('What metric should be used', ('Confusion Matrix', 'ROC Curve', 'Precision-Recall Curve'))
+
+        if st.sidebar.button('Classify', key = 'classify'):
+            st.subheader('Logistic Regression Results')
+            model = LogisticRegression(C = C, max_iter = max_iter)
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+            st.write('Accuracy :', model.score(X_test, y_test).round(2))
+            st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
+            st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
+            plot_metrics(metrics)
+        
         
 
 
