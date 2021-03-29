@@ -53,8 +53,13 @@ def main():
     st.sidebar.subheader("Choose Classifier")
     classifier = st.sidebar.selectbox("Choose Classifier", ("Logistic Regression", "Random Forest", "Support Vector Machine (SVM)"))
 
+
+    if st.sidebar.checkbox('show raw dataset', False):
+        st.subheader('Mushroom Data Set (Classification)')
+        st.write(df)
+
     if classifier == 'Support Vector Machine (SVM)':
-        st.sidebar.subheader('Model Hyperparameters')
+        st.sidebar.subheader('SVM Model Hyperparameters')
         C = st.sidebar.number_input("C (Regularization Number)", 0.01, 10.0, step = 0.01, key = 'C')
         kernel = st.sidebar.radio("Kernel", ("rbf","linear"), key = 'kernel')
         gamma = st.sidebar.radio("Gamma Kernel Coefficient", ("scale", "auto"), key = 'gamma' )
@@ -72,7 +77,7 @@ def main():
             plot_metrics(metrics)
 
     if classifier == 'Logistic Regression':
-        st.sidebar.subheader('Model Hyperparameters')
+        st.sidebar.subheader('Logistic Regression Model Hyperparameters')
         C = st.sidebar.number_input("C (Regularization parameter)", 0.01, 10.0, step = 0.01, key = 'C')
         max_iter = st.sidebar.slider("Maximum iterations", 100, 1000, key = 'max_iter')
 
@@ -87,20 +92,25 @@ def main():
             st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
             st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
             plot_metrics(metrics)
+
+    if classifier == 'Random Forest':
+        st.sidebar.subheader('Random Forest Model Hyperparameters')
+        n_estimators = st.sidebar.slider("Number of trees in the forest", 10, 100, key = 'n_estimators')
+        criterion = st.sidebar.radio("Criterion", ("gini","entropy"), key = 'criterion')
+        max_depth = st.sidebar.number_input("Maximum depth of a tree", 1, 50, step = 1, key = 'max_depth')
+
+        metrics = st.sidebar.multiselect('What metric should be used', ('Confusion Matrix', 'ROC Curve', 'Precision-Recall Curve'))
+
+        if st.sidebar.button('Classify', key = 'classify'):
+            st.subheader('Random Forest Results')
+            model = LogisticRegression(n_estimators = n_estimators, criterion = criterion, max_depth = max_depth)
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+            st.write('Accuracy :', model.score(X_test, y_test).round(2))
+            st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
+            st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
+            plot_metrics(metrics)
         
-        
-
-
-
-
-
-
-
-    
-    if st.sidebar.checkbox('show raw dataset', False):
-        st.subheader('Mushroom Data Set (Classification)')
-        st.write(df)
-    
 
 
  
