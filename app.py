@@ -103,7 +103,7 @@ def main():
 
         if st.sidebar.button('Classify', key = 'classify'):
             st.subheader('Random Forest Results')
-            model = LogisticRegression(n_estimators = n_estimators, criterion = criterion, max_depth = max_depth)
+            model = RandomForestClassifier(n_estimators = n_estimators, criterion = criterion, max_depth = max_depth)
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
