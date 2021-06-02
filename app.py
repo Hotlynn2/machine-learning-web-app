@@ -74,6 +74,7 @@ def main():
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
             st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
             st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
+            st.set_option('deprecation.showPyplotGlobalUse', False)
             plot_metrics(metrics)
 
     if classifier == 'Logistic Regression':
@@ -91,6 +92,7 @@ def main():
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
             st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
             st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
+            st.set_option('deprecation.showPyplotGlobalUse', False)
             plot_metrics(metrics)
 
     if classifier == 'Random Forest':
@@ -109,6 +111,7 @@ def main():
             st.write('Accuracy :', model.score(X_test, y_test).round(2))
             st.write('Precision :', precision_score(y_test, y_pred, labels = class_names).round(2))
             st.write('Recall :', recall_score(y_test, y_pred, labels = class_names).round(2))
+            st.set_option('deprecation.showPyplotGlobalUse', False)
             plot_metrics(metrics)
         
 
